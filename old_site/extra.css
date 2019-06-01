@@ -1,0 +1,14 @@
+.navbar-nav {
+	float:none;
+	margin:0 auto;
+	margin-top: 60px;
+	margin-bottom: 40px;
+	display: block;
+	text-align: center;
+	font-weight: 300;
+  }
+  
+  .navbar-nav > li {
+	display: inline-block;
+	float:none;
+  }

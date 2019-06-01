@@ -1,0 +1,25 @@
+.navbar-brand-text {
+	border-top: 1px solid black;
+	letter-spacing: 2px;
+	font-weight: 700;
+	text-transform: uppercase;
+  }
+  
+  .navbar {
+	margin: 30px 0 30px 0px;
+	padding: 0;
+  }
+  
+  .navbar-row {
+	margin: 0 auto;
+  }
+  
+  .navbar-container {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 960px;
+  }
+  
+  .nav-link {
+	font-weight: 300;
+  }
