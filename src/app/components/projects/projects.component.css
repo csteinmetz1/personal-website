@@ -1,0 +1,18 @@
+.card-body {
+	padding: 0em;
+	margin: 1em 0 0.5em 0;
+  }
+  
+  .card {
+	border: none;
+  }
+  
+  .card-img-fit { 
+	height: 240px;
+	object-fit: cover;
+  }
+  
+  p.card-text {
+	font-size: 14px;
+	font-weight: 300;
+  }
