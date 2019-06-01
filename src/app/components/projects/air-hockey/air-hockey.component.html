@@ -1,0 +1,120 @@
+<div class="container blog-container fade">
+  <h3>Autonomous Air Hockey Robot</h3>
+  <p class="date"> December 2, 2018</p>
+
+  <div class="spacer"></div>
+
+  <h5>Introduction</h5>
+  <p>
+      This project was completed as part of ECE 4960 - Integrated System Design II. 
+      Our team of five was tasked with building a system to play air hockey autonomously. 
+      The system needed to meet a number of requirements that included being portable, safe to operate, 
+      use the PlayStation Eye for computer vision, and use the Tiva-C Launchpad for motor control. 
+  </p>
+
+  <img class="img-fluid" src="assets/img/projects/air_hockey/clark1.gif">
+  <p class="caption">Our robot, named Clark, in action.</p>
+  
+  <h5>System Overview</h5>
+  <p>
+      We decided to employ a rotary-rotary design, which includes two DC motors in a closed-loop configuration. 
+      The computer vision system consists of a PlayStation Eye camera connected to a PC. 
+      Frames are analyzed in real-time via a C++ program to detect the puck location, predict future puck trajectories, 
+      and leverage this information to provide commands to the Tiva to move the arm, producing high-level gameplay. 
+      These commands are sent via UDP to the Tiva. 
+      Two proportional controllers implemented in the Tiva are used to supply control signals to the DC motors. 
+      Digital encoders provide feedback to the controllers via two LS7366R counter ICs. 
+      These controllers generate PWM and direction signals for each DC motor, which are used to operate a dual channel H-bridge motor controller connected to each motor. 
+      The complete system is able to dynamically cycle through a number gameplay states that include blocking and volleying a fast moving puck, 
+      hitting a slow moving puck, and freeing a puck stuck in the corners of the rink.
+  </p>
+
+  <h5>Strengths</h5>
+  <ul>
+      <li>Leveraging velocity and trajectory predictions to produce timing and arm positioning for effective blocking.</li>
+      <li>Dynamic gameplay modes with the ability to block and hit incoming pucks and free stuck pucks.</li>
+      <li>Adaptive and tunable image processing with parametric gain, exposure, and HSV thresholds via a GUI.</li>
+      <li>Spacers and 3D printed camera mount for consistent performance with regard to arm and puck positioning. </li>
+  </ul>
+
+  <h5>Weaknesses</h5>
+  <ul>
+      <li>Image processing limited to 30 FPS, limiting fastest puck detection. </li>
+      <li>The puck may drift and become stuck in a few specific locations. The system will not attempt to hit the puck so as to limit hitting the puck into our own goal.</li>
+      <li>May execute an erroneous motion in relation to the puck movement since it continues operating in certain movement states.</li>
+      <li>Specific incoming cases will result in powerful and sometimes erratic arm movement.</li>
+  </ul>
+
+  <div class="row">
+      <div class="col-sm-5">
+          <img class="img-fluid" src="assets/img/projects/air_hockey/system_overview.jpg">
+      </div>
+      <div class="col-sm-7">
+          <img class="img-fluid" src="assets/img/projects/air_hockey/full_system.png">
+      </div>
+  </div>
+
+  <h5>Mechanical System</h5>
+  <p>
+      The arm assembly is composed of two arm sections made of aluminum angles that provide a strong, but lightweight structure. 
+      The main DC motor is mounted within the wooden enclosure and features a turntable and an acrylic mount for the main arm. 
+      The turntable and a flex-coupler manage off-axis forces between the arm and the main motor. 
+      The secondary DC motor is mounted at the end of the main arm and the paddle is secured to the end of this arm with a 3D printed paddle holder as shown in Figure 3. 
+  </p>
+
+  <img class="img-fluid" src="assets/img/projects/air_hockey/arm.jpg">
+  <div class="spacer"></div>
+
+  <h5>Electrical System</h5>
+  <p>
+      The electrical system is comprised of the Tiva and the dual channel H-bridge. 
+      The schematic and wiring diagram for this configuration is shown in Figure 4. 
+      The Tiva receives UDP packets that contain the set angles for each of the two motors. 
+      These set points are then sent to two separate proportional controllers within the Tiva. 
+      These controllers calculate the current angle of the motors by reading the number of counts 
+      each motor encoder has undergone over a SPI bus connected to two LS7366R counter ICs. 
+      Each controller then outputs a control signal, which is converted to a duty-cycle signal, 
+      sent out of the Tiva’s PWM outputs along with GPIO pins that control the direction of each motor. 
+      These signals are sent to the dual channel H-bridge that modulates the 12V supply accordingly to move the motors.  
+  </p>
+
+  <img class="img-fluid" src="assets/img/projects/air_hockey/motor_control_schematic.jpg">
+
+  <h5>Computer Vision</h5>
+  <p>
+      The computer vision system is comprised of a number of processes that allow for it to effectively track the position of the puck on the playing field. 
+      The homography transformation takes the skewed perspective of the camera and translates it to a symmetric, 2-dimensional coordinate plane. 
+      GUI sliders allow the user to adjust the HSV thresholds and the camera’s gain and exposure parameters during runtime. 
+      With the ability to adjust these parameters at runtime, we can tune the system for various lighting environments and ensure proper detection of the puck. 
+      Once the thresholds, gain, and exposure values are finalized, the moment of the binary thresholded image is calculated. This returns the XY coordinates of the centroid of the puck. 
+      This information is used to calculate the velocity and puck trajectory using a linear regression on the past four puck locations. 
+  </p>
+
+  <img class="img-fluid" src="assets/img/projects/air_hockey/trajectory.jpeg">
+  <p class="caption">
+
+  <h5>Gameplay Logic</h5>
+  <p>
+      he current location of the puck, the velocity, and the trajectory are used to determine how the arm should be moved, 
+      with defending oncoming shots as well as scoring on the opponent being the goal. 
+      Figure 5 shows the real-time GUI of the puck detection (pink), trajectory prediction (blue), and the arm path (light blue). 
+      We continually check the position and velocity of the puck to determine which of the four main possible states the puck is in. 
+      These states consist of the puck being stuck in either a corner, a slow moving puck on our side of the playing field, 
+      a puck outside of our side of the playing field, and an oncoming puck. 
+      If a corner case is triggered, a special circular path is executed to free the puck. 
+      An algorithm we call “follow and hit” is executed for a slow moving puck, 
+      which involves following a puck to a position just behind it, 
+      and then hitting the puck out of our side of the playing field. 
+      If the puck is beyond our reach, the arm will then move to its “home” position, 
+      a location centered on the playing field, in front of our goal. 
+      The final case is an oncoming puck. 
+      For this we use an algorithm called “block and hit”. 
+      The trajectory and velocity of the puck are used to determine how to block the puck. 
+      Then the arm will move, in a timed fashion, 
+      to intercept the puck and immediately hit the puck toward a specified target location (in this case the opponent’s goal).
+  </p>
+
+  <img class="img-fluid" src="assets/img/projects/air_hockey/ah2.jpg">
+  <p class="caption"><strong>Team AH2:</strong> Edward Bear, Dylan Hastings, Christian Steinmetz, Avery White, and Elexander Fryer</p>
+
+</div>

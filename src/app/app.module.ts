@@ -2,11 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './components/about/about.component';
 import { NavComponent } from './components/nav/nav.component';
 import { CvComponent } from './components/cv/cv.component';
-import { AppRoutingModule } from './app-routing.module';
-import { ProjectsComponent } from './components/projects/projects.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
+import { AirHockeyComponent } from './components/projects/air-hockey/air-hockey.component';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
     AboutComponent,
     NavComponent,
     CvComponent,
-    ProjectsComponent
+    ProjectListComponent,
+    AirHockeyComponent
   ],
   imports: [
     BrowserModule,

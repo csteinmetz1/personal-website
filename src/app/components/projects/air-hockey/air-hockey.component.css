@@ -1,0 +1,28 @@
+.blog-container {
+	max-width: 800px;
+  }
+
+.spacer {
+	margin-top: 20px;
+}
+
+.caption {
+	margin-top: -30px;
+	margin-bottom: 25px;
+	font-size: 13px;
+	font-weight: 300;
+}
+
+ul {
+	padding-inline-start: 20px;
+}
+
+li {
+	font-size: 15px;
+	font-weight: 300;
+	list-style-type: circle;
+}
+
+img {
+	margin: 20px 0 40px 0;
+}

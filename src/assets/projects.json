@@ -1,63 +1,73 @@
 {
-	"projects" : [
+	"projectList" : [
 		{
-			"title": "Autonomous Air Hockey Robot",
+			"title" : "Autonomous Air Hockey Robot",
 			"description" : "As part of our senior design course we were tasked with building a robot to play air hockey autonomously.",
-			"date": "December 2, 2018",
-			"url": ""
+			"date" : "December 2, 2018",
+			"thumbnail" : "assets/img/projects/air_hockey/thumbnail.jpg",
+			"url" : "air-hockey"
 		},
 		{
 			"title": "pyloudnorm",
 			"description" : "Flexible perceptual audio loudness meter in Python based on the ITU-R BS.1770-4 loudness algorithm.",
 			"date": "November 5, 2018",
-			"url": ""
+			"thumbnail" : "assets/img/projects/pyloudnorm/thumbnail.jpg",
+			"url": "pyloudnorm"
 		},
 		{
 			"title": "NeuralReverberator",
 			"description" : "VST plugin built with MATLAB for AI driven reverberation synthesis using a spectral autoencoder.",
 			"date": "August 15, 2018",
+			"thumbnail" : "assets/img/projects/nverb/thumbnail.jpg",
 			"url": ""
 		},
 		{
 			"title": "auxCord",
 			"description" : "Leveraging the Spotify API to help friends build playlists with music everyone will enjoy.",
 			"date": "May 28, 2018",
+			"thumbnail" : "assets/img/projects/auxcord/thumbnail.png",
 			"url": ""
 		},
 		{
 			"title": "Cinuosity",
 			"description" : "Discover new genres, styles, and artists that you haven't heard before by injecting a bit of randomness into the process.",
 			"date": "December 28, 2017",
+			"thumbnail" : "assets/img/projects/cinuosity/thumbnail.png",
 			"url": ""
 		},
 		{
 			"title": "Phase Analysis Plugin",
 			"description" : "Gain insight about the relative phase relationship of audio signals to help audio engineers with drum overhead microphone placement.",
 			"date": "October 28, 2017",
+			"thumbnail" : "assets/img/projects/phase_analyzer/thumbnail.jpg",
 			"url": ""
 		},
 		{
 			"title": "Remote Lock Controller",
 			"description" : "An affordable as well as expandable remote controllable lock system operated via a mobile app.",
 			"date": "January 10, 2017",
+			"thumbnail" : "assets/img/projects/remote_lock/thumbnail.jpg",
 			"url": ""
 		},
 		{
 			"title": "Passive Monitor Controller",
 			"description" : "Design and assembly of a completely passive monitor controller for studio use.",
 			"date": "December 15, 2016",
+			"thumbnail" : "assets/img/projects/monitor_controller/thumbnail.jpg",
 			"url": ""
 		},
 		{
 			"title": "LED Binary Clock",
 			"description" : "Process of designing and building an Arduino based clock that tells the time in binary.",
 			"date": "August 1, 2016",
+			"thumbnail" : "assets/img/projects/binary_clock/thumbnail.jpg",
 			"url": ""
 		},
 		{
 			"title": "ATX Power Supply Conversion",
 			"description" : "Converting an old ATX power supply from a computer into a repurposed DC bench power supply.",
 			"date": "April 19, 2016",
+			"thumbnail" : "assets/img/projects/atx_power_supply/thumbnail.jpg",
 			"url": ""
 		}
 	]

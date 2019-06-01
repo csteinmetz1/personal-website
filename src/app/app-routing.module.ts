@@ -3,16 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AboutComponent } from './components/about/about.component';
 import { CvComponent } from './components/cv/cv.component';
-import { ProjectsComponent } from './components/projects/projects.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
+
+import { AirHockeyComponent } from './components/projects/air-hockey/air-hockey.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/about', pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
   { path: 'cv', component: CvComponent },
-  { path: 'projects', component: ProjectsComponent }
+  { path: 'projects', component: ProjectListComponent }, 
+  { path: 'projects/air-hockey', component: AirHockeyComponent}
 ];
-
-// path: 'detail/:id', component: HeroDetailComponent
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

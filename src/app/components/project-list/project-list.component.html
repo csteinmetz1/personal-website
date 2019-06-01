@@ -1,0 +1,47 @@
+
+<div class="container card-container fade">
+  <div class="card-deck">
+    <div *ngFor="let project of projects" class="card">
+      <a routerLink="{{project.url}}">
+        <img class="card-img-top card-img-fit" src="{{project.thumbnail}}" alt="{{project.title}}">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">{{project.title}}</h5>
+        <p class="card-text">{{project.description}}</p>
+        <a class="btn btn-outline-dark btn-sm" routerLink="{{project.url}}">Read more</a>
+        <p class="date card-date"> {{project.date}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+<div class="container fade">
+  <div class="card-deck">
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-block">
+        <h4 class="card-title">Card title</h4>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-block">
+        <h4 class="card-title">Card title</h4>
+        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-block">
+        <h4 class="card-title">Card title</h4>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+-->
